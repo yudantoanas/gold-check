@@ -3,9 +3,6 @@ name: run main.py
 on:
   schedule:
     - cron: '* * * * *' # every minute
-  push:
-    branches:
-      - main
 
 jobs:
   build:

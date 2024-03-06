@@ -1,5 +1,9 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
 import smtplib
 from email.message import EmailMessage
 from email.mime.text import MIMEText
@@ -47,7 +51,23 @@ def sendMail(message: dict):
 
 
 def startScrape():
-    driver = webdriver.Safari()
+    chrome_service = Service(ChromeDriverManager(
+        chrome_type=ChromeType.GOOGLE).install())
+
+    chrome_options = Options()
+    options = [
+        # "--headless",
+        # "--disable-gpu",
+        "--window-size=1200,1200",
+        "--ignore-certificate-errors",
+        # "--disable-extensions",
+        # "--no-sandbox",
+        # "--disable-dev-shm-usage"
+    ]
+    for option in options:
+        chrome_options.add_argument(option)
+
+    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
     url = "https://www.brankaslm.com/antam/index"
     driver.get(url)

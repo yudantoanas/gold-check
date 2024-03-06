@@ -1,6 +1,2 @@
 bs4
 selenium
-smtplib
-email.message
-email.mime.text
-email.mime.multipart

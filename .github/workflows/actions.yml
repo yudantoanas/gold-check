@@ -15,12 +15,15 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11.5' # install the python version needed
-          
+          python-version: "3.11.5" # install the python version needed
+
       - name: install python packages
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: execute py script # run main.py
+      - name: Install xvfb
+        run: sudo apt-get install xvfb
+
+      - name: execute py script # run script
         run: python app.py

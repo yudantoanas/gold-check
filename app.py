@@ -2,8 +2,8 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.os_manager import ChromeType
+import chromedriver_autoinstaller
+from pyvirtualdisplay import Display
 import smtplib
 from email.message import EmailMessage
 from email.mime.text import MIMEText
@@ -51,23 +51,30 @@ def sendMail(message: dict):
 
 
 def startScrape():
-    chrome_service = Service(ChromeDriverManager(
-        chrome_type=ChromeType.GOOGLE).install())
+    chromedriver_autoinstaller.install()
 
-    chrome_options = Options()
+    chrome_options = webdriver.ChromeOptions()
+
+    # Add your options as needed
     options = [
+        # Define window size here
+        "--window-size=1200,1200",
+        "--ignore-certificate-errors"
+
         # "--headless",
         # "--disable-gpu",
-        "--window-size=1200,1200",
-        "--ignore-certificate-errors",
+        # "--window-size=1920,1200",
+        # "--ignore-certificate-errors",
         # "--disable-extensions",
         # "--no-sandbox",
-        # "--disable-dev-shm-usage"
+        # "--disable-dev-shm-usage",
+        # '--remote-debugging-port=9222'
     ]
+
     for option in options:
         chrome_options.add_argument(option)
 
-    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
 
     url = "https://www.brankaslm.com/antam/index"
     driver.get(url)
@@ -98,5 +105,7 @@ def startScrape():
 
 
 if __name__ == "__main__":
+    display = Display(visible=0, size=(800, 800))
+    display.start()
     res = startScrape()
     sendMail(res)

@@ -96,7 +96,7 @@ def startScrape():
 
 
 if __name__ == "__main__":
-    # display = Display(visible=0, size=(800, 800))
-    # display.start()
+    display = Display(visible=0, size=(800, 800))
+    display.start()
     res = startScrape()
     sendMail(res)

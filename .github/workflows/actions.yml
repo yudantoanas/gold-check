@@ -1,9 +1,9 @@
 name: run main.py
 
 on:
-  # schedule:
-  #   - cron: '0 9 * * *' # At 09:00.
-  push:
+  schedule:
+    - cron: '0 9 * * *' # At 09:00.
+  # push:
 
 jobs:
   build:
@@ -22,6 +22,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # install xvfb
+      # since we cannot scrape the site with headless opt (blocked from site)
+      # so, we have to install xvfb to performs all graphical operations in virtual memory without showing any screen output.
       - name: Install xvfb
         run: sudo apt-get install xvfb
 

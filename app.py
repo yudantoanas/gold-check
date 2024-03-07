@@ -1,14 +1,14 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 import chromedriver_autoinstaller
-from pyvirtualdisplay import Display
 import smtplib
 from email.message import EmailMessage
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+# Since in the GH action we use xfvb for virtual display,
+# so we need to implement this package in order to work
+from pyvirtualdisplay import Display
 
 def sendMail(message: dict):
     # creates SMTP session
@@ -52,18 +52,6 @@ def sendMail(message: dict):
 
 def startScrape():
     chromedriver_autoinstaller.install()
-
-    # chrome_options = webdriver.ChromeOptions()
-
-    # # Add your options as needed
-    # options = [
-    #     # Define window size here
-    #     "--window-size=1200,1200",
-    #     "--ignore-certificate-errors"
-    # ]
-
-    # for option in options:
-    #     chrome_options.add_argument(option)
 
     driver = webdriver.Chrome()
 

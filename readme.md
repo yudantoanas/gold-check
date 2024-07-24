@@ -1,19 +1,15 @@
 # Gold Check
 
-**Gold Check** is an cron job that will notify you with daily gold price from [Brankas Logam Mulia](https://www.brankaslm.com/antam/index) website.
+Gold Check is a cron job for GitHub Actions that will notify through email with daily gold price from [Brankas](https://www.brankaslm.com/antam/index) website.
 
-Tech Stack I Used:
+## Requirements
+- Python
+- Selenium
+- BeautifulSoup
+- ChromDriver Auto Installer
+- PyVirtualDisplay
 
-- `python3`
-- `selenium`: automate web browser interaction from Python.
-- `bs4`: Screen-scraping library
-- `smtplib`: SMTP client
-- `email` : for managing email messages
-- `chromedriver_autoinstaller`: Automatically install chromedriver that supports the currently installed version of chrome.
-- `PyVirtualDisplay`: python wrapper for Xvfb, Xephyr and Xvnc
-
-References:
-
-- <https://www.geeksforgeeks.org/send-mail-gmail-account-using-python/>
-- <https://mailtrap.io/blog/python-send-html-email/#Native-Python-methods-to-send-HTML-emails>
-- <https://github.com/MarketingPipeline/Python-Selenium-Action/tree/main>
+## References:
+- [How to Send HTML Emails in Python using SMTP and email API](https://mailtrap.io/blog/python-send-html-email) by Veljko Ristić
+- [Send Emails Using Python](https://www.geeksforgeeks.org/send-mail-gmail-account-using-python)
+- [Python Selenium Action](https://github.com/MarketingPipeline/Python-Selenium-Action/tree/main)
